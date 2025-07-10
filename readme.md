@@ -1,68 +1,99 @@
 # Imersão DevOps - Alura Google Cloud
+# API Escola
 
-Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.
+Este projeto é uma API RESTful para gerenciamento de dados de uma escola, desenvolvida com **FastAPI** e conteinerizada com **Docker**.
 
-## Pré-requisitos
+## 🚀 Tecnologias Utilizadas
 
-- [Python 3.10 ou superior instalado](https://www.python.org/downloads/)
-- [Git](https://git-scm.com/downloads)
-- [Docker](https://www.docker.com/get-started/)
+* **Python 3.10**: Linguagem de programação principal.
+* **FastAPI**: Framework web moderno e rápido para construção de APIs em Python.
+* **Uvicorn**: Servidor web ASGI para rodar aplicações FastAPI.
+* **SQLModel**: Biblioteca para interagir com bancos de dados, combinando a facilidade do Pydantic com o poder do SQLAlchemy.
+* **Docker**: Para empacotar a aplicação e suas dependências em um contêiner, facilitando a portabilidade e implantação.
+* **Google Cloud Run**: Serviço serverless para rodar contêineres na nuvem, escalando automaticamente e com pagamento por uso.
+* **Google Artifact Registry**: Repositório de imagens Docker na nuvem.
+* **Google Cloud Build**: Serviço de CI/CD para construir e versionar imagens Docker.
 
-## Passos para subir o projeto
+## ✨ Funcionalidades Principais
 
-1. **Faça o download do repositório:**
-   [Clique aqui para realizar o download](https://github.com/guilhermeonrails/imersao-devops/archive/refs/heads/main.zip)
+Esta API permite gerenciar informações de **Alunos**, **Cursos**, **Disciplinas** e **Professores**. Alguns dos endpoints disponíveis incluem:
 
-2. **Crie um ambiente virtual:**
-   ```sh
-   python3 -m venv ./venv
-   ```
+* Listar todos os alunos
+* Adicionar novos alunos
+* Buscar alunos por ID
+* Atualizar dados de alunos
+* Deletar alunos
+* (E funcionalidades similares para Cursos, Disciplinas e Professores, conforme implementado no código)
 
-3. **Ative o ambiente virtual:**
-   - No Linux/Mac:
-     ```sh
-     source venv/bin/activate
-     ```
-   - No Windows, abra um terminal no modo administrador e execute o comando:
-   ```sh
-   Set-ExecutionPolicy RemoteSigned
-   ```
 
-     ```sh
-     venv\Scripts\activate
-     ```
+## ☁️ API Implantada no Google Cloud Run
 
-4. **Instale as dependências:**
-   ```sh
-   pip install -r requirements.txt
-   ```
+A API está atualmente implantada e acessível publicamente através do Google Cloud Run:
 
-5. **Execute a aplicação:**
-   ```sh
-   uvicorn app:app --reload
-   ```
+* **URL da API:** `https://minha-api-escola-514805867024.southamerica-east1.run.app`
+* **Documentação Interativa (Swagger UI):** `https://minha-api-escola-514805867024.southamerica-east1.run.app/docs`
 
-6. **Acesse a documentação interativa:**
+Você pode usar a documentação interativa para explorar e testar os endpoints da API diretamente no seu navegador!
 
-   Abra o navegador e acesse:  
-   [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-   Aqui você pode testar todos os endpoints da API de forma interativa.
 
----
+## ⚙️ Como Rodar Localmente (Desenvolvimento)
 
-## Estrutura do Projeto
+Para rodar esta API em sua máquina local:
 
-- `app.py`: Arquivo principal da aplicação FastAPI.
-- `models.py`: Modelos do banco de dados (SQLAlchemy).
-- `schemas.py`: Schemas de validação (Pydantic).
-- `database.py`: Configuração do banco de dados SQLite.
-- `routers/`: Diretório com os arquivos de rotas (alunos, cursos, matrículas).
-- `requirements.txt`: Lista de dependências do projeto.
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/AdrianaThomaz/api-escola.git](https://github.com/AdrianaThomaz/api-escola.git)
+    cd api-escola
+    ```
+    (Lembre-se de usar seu nome de usuário exato no lugar de `AdrianaThomaz` se for diferente para clonar)
 
----
+2.  **Crie e ative um ambiente virtual:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # No Linux/macOS
+    # venv\Scripts\activate   # No Windows
+    ```
 
-- O banco de dados SQLite será criado automaticamente como `escola.db` na primeira execução.
-- Para reiniciar o banco, basta apagar o arquivo `escola.db` (isso apagará todos os dados).
+3.  **Instale as dependências:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
----
+4.  **Execute a aplicação:**
+    ```bash
+    uvicorn main:app --reload --host 0.0.0.0 --port 8000
+    ```
+    A API estará acessível em `http://127.0.0.1:8000` e a documentação em `http://127.0.0.1:8000/docs`.
+
+
+
+## 🐳 Construção e Implantação com Docker (Exemplo)
+
+O projeto inclui um `Dockerfile` para conteinerização.
+
+Para construir a imagem Docker localmente:
+
+```bash
+docker build -t minha-api-escola .
+
+Para rodar a imagem Docker localmente:
+
+Bash
+
+docker run -p 8080:8080 minha-api-escola
+
+
+A implantação na nuvem foi realizada no Google Cloud Run usando o Google Cloud Build e o Google Artifact Registry. O comando de deploy utilizado foi:
+
+Bash
+
+gcloud builds submit --tag southamerica-east1-docker.pkg.dev/ivory-lotus-464821-f4/api-escola/minha-api:latest .
+gcloud run deploy minha-api-escola \
+--image southamerica-east1-docker.pkg.dev/ivory-lotus-464821-f4/api-escola/minha-api:latest \
+--platform managed \
+--region southamerica-east1 \
+--allow-unauthenticated \
+--project ivory-lotus-464821-f4
+
+
