@@ -2,8 +2,8 @@
 # API Escola
 
 ## Licença
-Este projeto é uma adaptação de (alura-imersão-dev-7-edicao)
-(https://github.com/rafa-san/alura-imersao-dev-7-edicao) (autor: Rafael), licenciado sob MIT.
+Este projeto é uma adaptação de (alura-imersão-devops_)
+(https://github.com/guilhermeonrails/alura-imersao-devops_) (autor: Guilherme), licenciado sob MIT.
 
 Este projeto é uma API RESTful para gerenciamento de dados de uma escola, desenvolvida com **FastAPI** e conteinerizada com **Docker**.
 
