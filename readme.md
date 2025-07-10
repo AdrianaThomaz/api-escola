@@ -3,7 +3,12 @@
 
 ## Licença
 Este projeto é uma adaptação de (alura-imersão-devops_)
-(https://github.com/guilhermeonrails/alura-imersao-devops_) (autor: Guilherme), licenciado sob MIT.
+
+Este repositório serve como um projeto de estudo e portfolio, **baseado no material da Imersão DevOps da Alura e Google Cloud.**
+
+O código-base inicial foi derivado do projeto `ellis` do professor Guilherme Silveira (guilhermeonrails):
+[https://github.com/guilhermeonrails/ellis](https://github.com/guilhermeonrails/ellis)
+
 
 Este projeto é uma API RESTful para gerenciamento de dados de uma escola, desenvolvida com **FastAPI** e conteinerizada com **Docker**.
 
